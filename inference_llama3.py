@@ -26,14 +26,22 @@ except:  # noqa: E722
 
 def main(
     load_8bit: bool = False,
+<<<<<<< HEAD
     base_model: str = "./Llama2-7b-chat/",
+=======
+    base_model: str = "../Chinese-Llama-2-7b/Llama2-7b-chat/",
+>>>>>>> a3716ed1355ea26820eb563c9d6171195e8b83c7
     lora_weights: str = "./checkpoints_XXX/",
     prompt_template: str = "llama2",  # The prompt template to use, will default to alpaca.
     temperature: float=0.1,
     top_p: float=0.75,
     top_k: int=40,
     num_beams: int=4,
+<<<<<<< HEAD
     max_new_tokens: int=512,
+=======
+    max_new_tokens: int=128,
+>>>>>>> a3716ed1355ea26820eb563c9d6171195e8b83c7
     stream_output: bool=False,
     **kwargs,
 ):
@@ -82,7 +90,10 @@ def main(
     model.config.pad_token_id = tokenizer.pad_token_id = 0  # unk
     model.config.bos_token_id = 1
     model.config.eos_token_id = 2
+<<<<<<< HEAD
     tokenizer.padding_side = "left"
+=======
+>>>>>>> a3716ed1355ea26820eb563c9d6171195e8b83c7
 
     if not load_8bit:
         model.half()  # seems to fix bugs for some users.
@@ -95,7 +106,11 @@ def main(
         data = json.load(f)
 
       
+<<<<<<< HEAD
     f = open('./512_res_XXX.json','a+',encoding='utf-8')
+=======
+    f = open('./res_XXX.json','a+',encoding='utf-8')
+>>>>>>> a3716ed1355ea26820eb563c9d6171195e8b83c7
     new_data = []
     instruction="Please refactor the following code:"
     
@@ -129,8 +144,13 @@ def main(
             "generation_config": generation_config,
             "return_dict_in_generate": True,
             "output_scores": True,
+<<<<<<< HEAD
             "max_new_tokens": max_new_tokens,
             #"max_new_tokens": len(input_ids[0]),
+=======
+            #"max_new_tokens": max_new_tokens,
+            "max_new_tokens": len(input_ids[0]),
+>>>>>>> a3716ed1355ea26820eb563c9d6171195e8b83c7
         }
 
         if stream_output:
@@ -185,7 +205,11 @@ def main(
         f.write(str(d)+"\n")
         new_data.append({"instruction":instruction,"input":input, "ground_truth":code_after,"output":output})
     #print(11111)    
+<<<<<<< HEAD
     with open('./512_all_XXX_all.json','w+',encoding='utf-8') as f:
+=======
+    with open('./all_XXX_all.json','w+',encoding='utf-8') as f:
+>>>>>>> a3716ed1355ea26820eb563c9d6171195e8b83c7
         json.dump(new_data,f)
     f.close()
     

@@ -26,7 +26,10 @@ model.config.bos_token_id = 1
 model.config.eos_token_id = 2
 
 
+<<<<<<< HEAD
 tokenizer.padding_side = "left"
+=======
+>>>>>>> a3716ed1355ea26820eb563c9d6171195e8b83c7
 new_data = []
 for temp in tqdm(data):
     code_before = temp["input"]
@@ -49,7 +52,11 @@ for temp in tqdm(data):
                 generation_config=generation_config,
                 return_dict_in_generate=True,
                 output_scores=True,
+<<<<<<< HEAD
                 max_new_tokens=300,
+=======
+                max_new_tokens=max_new_tokens,
+>>>>>>> a3716ed1355ea26820eb563c9d6171195e8b83c7
     )
     s = generate_ids.sequences[0]
     output = tokenizer.decode(s)
@@ -57,6 +64,7 @@ for temp in tqdm(data):
     new_data.append({"instruction":prompt ,"input":input, "ground_truth":code_after,"output":output})
 
   
+<<<<<<< HEAD
 with open('./all_res_llama2_ori_XXX.json','w+',encoding='utf-8') as f:
     json.dump(new_data,f)
 
@@ -66,3 +74,9 @@ with open('./all_res_llama2_ori_XXX.json','w+',encoding='utf-8') as f:
 
 
 
+=======
+with open('/data/lh/LLM/all_res_llama2_ori_XXX.json','w+',encoding='utf-8') as f:
+    json.dump(new_data,f)
+
+
+>>>>>>> a3716ed1355ea26820eb563c9d6171195e8b83c7
